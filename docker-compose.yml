@@ -9,12 +9,12 @@ services:
   perf-test:
     image: pivotalrabbitmq/perf-test:latest
     command:
-      - --uri=amqp://rmq_host
-      - --servers-startup-timeout=45
+      - --uri=amqp://guest:guest@rmq_host:5672
+      - --servers-startup-timeout=10
       - --rate=10
-      - --producers=2
-      - --consumers=2
-      - --confirm=32
+      - --producers=1
+      - --consumers=1
+      - --confirm=4
       - --confirm-timeout=800
       - --flag=mandatory
       - --flag=persistent
