@@ -1,14 +1,14 @@
 version: '3'
 
 services:
-  rmq:
+  rmq_host:
     build: rmq
     environment:
       - LOG=debug
   perf-test:
     image: pivotalrabbitmq/perf-test:latest
     command:
-      - --uri=amqp://guest:guest@rmq:5672
+      - --uri=amqp://guest:guest@rmq_host:5672
       - --servers-startup-timeout=10
       - --rate=10
       - --producers=1
@@ -23,5 +23,5 @@ services:
       - --queue-pattern-from=0
       - --queue-pattern-to=9
     depends_on:
-      - rmq
+      - rmq_host
     restart: on-failure
